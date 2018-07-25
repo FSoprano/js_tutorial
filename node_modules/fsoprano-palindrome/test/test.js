@@ -17,6 +17,10 @@ describe("Phrase", function() {
 			assert(mixedPalindrome.palindrome());
 		});
 		
+		it("should return false for an empty string", function() {
+			let emptyPhrase = new Phrase("");
+			assert(!emptyPhrase.palindrome());
+    });
 		// Pending tests (to be completed):
 		it("should return true for a bla bla palindrome");
 
