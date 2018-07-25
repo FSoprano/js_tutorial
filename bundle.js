@@ -1,11 +1,12 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 let Phrase = require("fsoprano-palindrome");
 
-function palindromeTester() {
-	let string = prompt("Please enter a string for palindrome testing:");
+function palindromeTester(event) {
+	event.preventDefault(); //Default for submit is to send stuff to a server, which we don't have.
+	// Old solution with prompt: let string = prompt("Please enter a string for palindrome testing:");
 	// alert(new Phrase(string).palindrome());
 
-	let phrase = new Phrase(string);
+	let phrase = new Phrase(event.target.phrase.value); // event.target is the form element with the name "phrase".
 	let palindromeResult = document.querySelector("#palindromeResult");
 
 
@@ -18,10 +19,14 @@ function palindromeTester() {
 
 document.addEventListener("DOMContentLoaded", function() {
 	let button = document.querySelector("#palindromeTester");
-	
+	button.addEventListener("submit", function() {
+		palindromeTester(event);
+	});
+	/* Used in chapter 8.3:
 	button.addEventListener("click", function() {
 		palindromeTester();
 	});
+	*/
 	// An exercise (does not work with the palindromeResult.innerHTML construction):
 	// button.addEventListener("click", palindromeTester());
 });
